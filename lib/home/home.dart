@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todolist/db/rowitemslist.dart';
+import 'package:todolist/home/listitems.dart';
 
 // ignore: must_be_immutable
 class Home extends StatefulWidget {
@@ -18,9 +20,11 @@ class _Home extends State<Home> {
 
   void _saveData() {
     setState(() {
-      _itemsHiveDB.put(textFormFieldController.text,
-          {"itemName": textFormFieldController.value, "date": DateTime.now()});
-      
+      RowItemsList itemsList =
+          RowItemsList(textFormFieldController.text, DateTime.now());
+      itemsList.saveItems();
+
+      print(RowItemsList.getAllItems());
     });
   }
 
@@ -30,10 +34,11 @@ class _Home extends State<Home> {
         appBar: AppBar(
           title: const Text("To Do List"),
         ),
-        body: Stack(children: [
+        body: Stack(
+          children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(15, 35, 1400, 0),
+              margin: const EdgeInsets.fromLTRB(15, 85, 1400, 0),
               child: Theme(
                   data: Theme.of(context).copyWith(
                       colorScheme:
@@ -48,39 +53,23 @@ class _Home extends State<Home> {
                   )),
             ),
             Padding(
-                padding: const EdgeInsets.fromLTRB(15, 35, 1500, 0),
+                padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
                 child: ElevatedButton(
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.pink),
                     onPressed: _saveData,
                     child: const Text("Save"))),
           ]),
-          Container(
-              width: 100,
-              height: 100,
-              margin: const EdgeInsets.fromLTRB(15, 35, 1400, 0),
-              child: ListView.builder(
-                itemCount: _itemsHiveDB.length,
-                itemBuilder: (context, index) {
-                  print(_itemsHiveDB.get(index) + "*********************");
-                  return Dismissible(
-                      key: ValueKey(_itemsHiveDB.get(index)),
-                      child: ListTile(
-                        shape: const RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.black, width: .2)),
-                        style: ListTileStyle.drawer,
-                        tileColor: otherColors[index % 2],
-                        title: Text(
-                            _itemsHiveDB.get(index)["itemName"].toString()),
-                        subtitle: Text(
-                            "Date:   ${_itemsHiveDB.get(index)["expirationDate"].toString().substring(0, 10)}"),
-                        // trailing: Text(RowReminderItems.getAllItems()
-                        //         .elementAt(index)["notify"]
-                        //         .toString() +
-                        //     " Week(s) Before")
-                      ));
-                },
-              ))
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+              width: 800,
+              height: 500,
+              margin: const EdgeInsets.fromLTRB(720, 35, 100, 0),
+              child: const ListItems())
+            ],
+          )
         ]));
   }
 }
