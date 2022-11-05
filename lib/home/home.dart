@@ -15,16 +15,22 @@ class Home extends StatefulWidget {
 
 class _Home extends State<Home> {
   final textFormFieldController = TextEditingController();
-  List otherColors = [const Color.fromARGB(255, 217, 217, 217), Colors.pink];
-  static final _itemsHiveDB = Hive.box("items");
-
+  List otherColors = [const Color.fromARGB(255, 217, 217, 217), Color.fromARGB(255, 236, 113, 154)];
+  // static final _itemsHiveDB = Hive.box("items");
+  bool checkbox = false;
   void _saveData() {
     setState(() {
       RowItemsList itemsList =
           RowItemsList(textFormFieldController.text, DateTime.now());
       itemsList.saveItems();
-
+      textFormFieldController.clear();
       print(RowItemsList.getAllItems());
+    });
+  }
+
+  void _deleteData(int index) {
+    setState(() {
+      RowItemsList.deleteItem(RowItemsList.getAllItems().elementAt(index)["itemName"]);
     });
   }
 
@@ -34,8 +40,7 @@ class _Home extends State<Home> {
         appBar: AppBar(
           title: const Text("To Do List"),
         ),
-        body: Stack(
-          children: [
+        body: Stack(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
               margin: const EdgeInsets.fromLTRB(15, 85, 1400, 0),
@@ -59,17 +64,62 @@ class _Home extends State<Home> {
                         ElevatedButton.styleFrom(backgroundColor: Colors.pink),
                     onPressed: _saveData,
                     child: const Text("Save"))),
-          ]),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-              width: 800,
-              height: 500,
-              margin: const EdgeInsets.fromLTRB(720, 35, 100, 0),
-              child: const ListItems())
+                  width: 600,
+                  height: 500,
+                  margin: const EdgeInsets.fromLTRB(820, 0, 100, 0),
+                  child: ListView.builder(
+                      itemCount: RowItemsList.getAllItems().length,
+                      itemBuilder: (context, index) {
+                        print(
+                            "${RowItemsList.getAllItems()}*********************");
+                        return ListTile(
+                            tileColor: otherColors[index % 2],
+                            title: Text(RowItemsList.getAllItems()
+                                .elementAt(index)["itemName"]
+                                .toString()),
+                            subtitle: Text(
+                                "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    _deleteData(index);
+                                  }, 
+                                  icon: const Icon(
+                                    Icons.delete_outline,
+                                    size: 20.0,
+                                    color: Colors.red,
+                                  ))
+                              ],
+                            ),);
+                      }))
             ],
           )
-        ]));
+        ])]));
   }
 }
+
+
+// Dismissible(
+//                             onDismissed: (direction) => RowItemsList.deleteItem(
+//                                 RowItemsList.getAllItems()
+//                                     .elementAt(index)["itemName"]),
+//                             key: ValueKey(
+//                                 RowItemsList.getAllItems().elementAt(index)),
+//                             child: ListTile(
+//                                 shape: const RoundedRectangleBorder(
+//                                     side: BorderSide(
+//                                         color: Colors.black, width: .2)),
+//                                 style: ListTileStyle.drawer,
+//                                 tileColor: otherColors[index % 2],
+//                                 title: Text(RowItemsList.getAllItems()
+//                                     .elementAt(index)["itemName"]
+//                                     .toString()),
+//                                 subtitle: const Text("Due:   Today"),
+//                                 trailing: Text(
+//                                     "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}")));
