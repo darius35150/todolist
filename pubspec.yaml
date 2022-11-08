@@ -39,7 +39,8 @@ dependencies:
   easy_sidemenu: ^0.4.0
   hive:
   hive_flutter: 
-
+  responsive_framework: ^0.2.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

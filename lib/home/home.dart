@@ -40,66 +40,74 @@ class _Home extends State<Home> {
         appBar: AppBar(
           title: const Text("To Do List"),
         ),
-        body: Stack(children: [
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(15, 85, 1400, 0),
-              child: Theme(
-                  data: Theme.of(context).copyWith(
-                      colorScheme:
-                          const ColorScheme.light(primary: Colors.pink)),
-                  child: TextFormField(
-                    controller: textFormFieldController,
-                    style: const TextStyle(fontFamily: "Nunito"),
-                    cursorColor: Colors.pink,
-                    decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: "Enter item name"),
-                  )),
-            ),
-            Padding(
-                padding: const EdgeInsets.fromLTRB(15, 15, 5, 0),
-                child: ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.pink),
-                    onPressed: _saveData,
-                    child: const Text("Save"))),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+        body: Stack(
             children: [
-              Container(
-                  width: 600,
-                  height: 500,
-                  margin: const EdgeInsets.fromLTRB(820, 0, 100, 0),
-                  child: ListView.builder(
-                      itemCount: RowItemsList.getAllItems().length,
-                      itemBuilder: (context, index) {
-                        print(
-                            "${RowItemsList.getAllItems()}*********************");
-                        return ListTile(
-                            tileColor: otherColors[index % 2],
-                            title: Text(RowItemsList.getAllItems()
-                                .elementAt(index)["itemName"]
-                                .toString()),
-                            subtitle: Text(
-                                "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    _deleteData(index);
-                                  }, 
-                                  icon: const Icon(
-                                    Icons.delete_outline,
-                                    size: 20.0,
-                                    color: Colors.red,
-                                  ))
-                              ],
-                            ),);
-                      }))
-            ],
-          )
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min, 
+                children: [
+                  Container(
+                  padding: const EdgeInsets.fromLTRB(520, 25, 520, 0),
+                  child: Center ( 
+                    child: Theme(
+                      data: Theme.of(context).copyWith(
+                          colorScheme:
+                              const ColorScheme.light(primary: Colors.pink)),
+                      child: TextField(
+                        controller: textFormFieldController,
+                        style: const TextStyle(fontFamily: "Nunito"),
+                        cursorColor: Colors.pink,
+                        decoration: const InputDecoration(
+                            border: UnderlineInputBorder(),
+                            labelText: "Enter item name"),
+                      ))),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 15, 495, 0),
+                    child: ElevatedButton(
+                        style:
+                            ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+                        onPressed: _saveData,
+                        child: const Text("Save")))),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 600,
+                        height: 500,
+                        margin: const EdgeInsets.fromLTRB(0, 95, 0, 0),
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: RowItemsList.getAllItems().length,
+                            itemBuilder: (context, index) {
+                              print(
+                                  "${RowItemsList.getAllItems()}*********************");
+                              return ListTile(
+                                  tileColor: otherColors[index % 2],
+                                  title: Text(RowItemsList.getAllItems()
+                                      .elementAt(index)["itemName"]
+                                      .toString()),
+                                  subtitle: Text(
+                                      "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          _deleteData(index);
+                                        }, 
+                                        icon: const Icon(
+                                          Icons.delete_outline,
+                                          size: 20.0,
+                                          color: Colors.red,
+                                        ))
+                                    ],
+                                  ),);
+                            })))
+                  ],
+                )
         ])]));
   }
 }
