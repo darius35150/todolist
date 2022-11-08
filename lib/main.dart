@@ -19,18 +19,18 @@ class ToDoListApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       builder: ((context, child) => ResponsiveWrapper.builder(
-        child,
-        maxWidth: 2000,
-        minWidth: 600,
-        defaultScale: true,
-        breakpoints: [
-          ResponsiveBreakpoint.resize(750, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(800, name: TABLET),
-          ResponsiveBreakpoint.resize(1000, name: DESKTOP)
-        ],
-      )),
+            child,
+            maxWidth: 2000,
+            minWidth: 600,
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.resize(750, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              const ResponsiveBreakpoint.resize(1000, name: DESKTOP)
+            ],
+          )),
       initialRoute: "/",
-      title: 'Flutter Demo',
+      title: 'To Do List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
