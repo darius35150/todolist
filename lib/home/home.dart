@@ -73,6 +73,7 @@ class _Home extends State<Home> {
                     padding: const EdgeInsets.fromLTRB(0, 20, 300, 0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        elevation: 15,
                         backgroundColor: Colors.pink
                       ),
                       onPressed: _saveData,
@@ -92,29 +93,34 @@ class _Home extends State<Home> {
                         scrollDirection: Axis.vertical,
                         itemCount: RowItemsList.getAllItems().length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            tileColor: otherColors[index % 2],
-                            title: Text(RowItemsList.getAllItems()
-                                .elementAt(index)["itemName"]
-                                .toString()
-                            ),
-                            subtitle: Text(
-                                "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    _deleteData(index);
-                                  },
-                                  icon: const Icon(
-                                    Icons.delete_outline,
-                                    size: 20.0,
-                                    color: Colors.red,
+                          return Card( 
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            elevation: 15,
+                            child: 
+                              ListTile(
+                              tileColor: otherColors[index % 2],
+                              title: Text(RowItemsList.getAllItems()
+                                  .elementAt(index)["itemName"]
+                                  .toString()
+                              ),
+                              subtitle: Text(
+                                  "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _deleteData(index);
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      size: 20.0,
+                                      color: Colors.red,
+                                    )
                                   )
-                                )
-                              ],
-                            ),
+                                ],
+                              ),
+                            )
                           );
                         }
                       )
