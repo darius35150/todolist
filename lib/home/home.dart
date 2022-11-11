@@ -35,11 +35,13 @@ class _Home extends State<Home> {
                 ),
               ),
               actions: <Widget>[
-                TextButton(
-                  child: const Text('Yes'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                Center(
+                  child: ElevatedButton(
+                    child: const Text('Ok'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
                 ),
               ],
             );
