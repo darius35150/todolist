@@ -21,7 +21,7 @@ class ToDoListApp extends StatelessWidget {
       title: 'To Do List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.green,
       ),
       home: Home(),
     );
