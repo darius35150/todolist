@@ -16,7 +16,7 @@ class _Home extends State<Home> {
   final textFormFieldController = TextEditingController();
   List otherColors = [
     const Color.fromARGB(255, 217, 217, 217),
-    const Color.fromARGB(255, 236, 113, 154)
+    const Color.fromARGB(255, 89, 235, 179)
   ];
 
   Future<void> _saveData() async {
@@ -67,6 +67,7 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 89, 235, 179),
           title: const Text("To Do List"),
         ),
         body: BootstrapContainer(fluid: false, children: [
@@ -78,11 +79,11 @@ class _Home extends State<Home> {
                 child: Theme(
                     data: Theme.of(context).copyWith(
                         colorScheme:
-                            const ColorScheme.light(primary: Colors.pink)),
+                            const ColorScheme.light(primary: Color.fromARGB(255, 89, 235, 179))),
                     child: TextField(
                       controller: textFormFieldController,
                       style: const TextStyle(fontFamily: "Nunito"),
-                      cursorColor: Colors.pink,
+                      cursorColor:  const Color.fromARGB(255, 89, 235, 179),
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: "Enter item name"),
@@ -96,7 +97,7 @@ class _Home extends State<Home> {
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            elevation: 15, backgroundColor: Colors.pink),
+                            elevation: 15, backgroundColor: const Color.fromARGB(255, 89, 235, 179)),
                         onPressed: _saveData,
                         child: const Text("Save"))))
           ]),
