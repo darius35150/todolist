@@ -91,7 +91,7 @@ class _Home extends State<Home> {
           ]),
           BootstrapRow(children: [
             BootstrapCol(
-              sizes: "col-5 col-sm-2 col-md-2 col-lg-2 col-xl-2",
+              sizes: "col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2",
               fit: FlexFit.tight,
                 child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
