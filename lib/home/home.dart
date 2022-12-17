@@ -94,7 +94,7 @@ class _Home extends State<Home> {
               sizes: "col-5 col-sm-3 col-md-2 col-lg-2 col-xl-2",
               fit: FlexFit.tight,
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             elevation: 15, backgroundColor: const Color.fromARGB(255, 89, 235, 179)),
@@ -106,8 +106,8 @@ class _Home extends State<Home> {
               child: Center(
                   child: Container(
                       width: 600,
-                      height: 700,
-                      margin: const EdgeInsets.fromLTRB(0, 95, 0, 0),
+                      height: 600,
+                      margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: RowItemsList.getAllItems().length,
@@ -121,7 +121,7 @@ class _Home extends State<Home> {
                                       .elementAt(index)["itemName"]
                                       .toString()),
                                   subtitle: Text(
-                                      "Date:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
+                                      "Date Added:   ${RowItemsList.getAllItems().elementAt(index)["date"].toString().substring(0, 10)}"),
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
