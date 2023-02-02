@@ -68,7 +68,10 @@ class _Home extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 89, 235, 179),
-          title: const Text("To Do List"),
+          title: const Text("To Do List",
+            style: TextStyle(
+              color: Colors.white
+            ),),
         ),
         body: BootstrapContainer(fluid: false, children: [
           BootstrapRow(
@@ -99,7 +102,10 @@ class _Home extends State<Home> {
                         style: ElevatedButton.styleFrom(
                             elevation: 15, backgroundColor: const Color.fromARGB(255, 89, 235, 179)),
                         onPressed: _saveData,
-                        child: const Text("Save"))))
+                        child: const Text("Save",
+                          style: TextStyle(
+                            color: Colors.white
+                          ),))))
           ]),
           BootstrapRow(
             children: [  BootstrapCol(
