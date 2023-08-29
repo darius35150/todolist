@@ -28,9 +28,9 @@ class _Home extends State<Home> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('To Do List'),
-              content: SingleChildScrollView(
+              content: const SingleChildScrollView(
                 child: ListBody(
-                  children: const <Widget>[
+                  children: <Widget>[
                     Text('You must enter an item before saving!'),
                   ],
                 ),
