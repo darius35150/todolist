@@ -87,6 +87,9 @@ class _Home extends State<Home> {
                       controller: textFormFieldController,
                       style: const TextStyle(fontFamily: "Nunito"),
                       cursorColor:  const Color.fromARGB(255, 89, 235, 179),
+                      onSubmitted: (value) =>{
+                           _saveData()
+                      },
                       decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
                           labelText: "Enter item name"),
